@@ -38,7 +38,7 @@ const CONFIG = {
   fields: {
     first_name: 'firstname',
     last_name: 'lastname',
-    job_title: 'jobtitle',
+    job_title: 'job_title',
     company: 'company',
     work_email: 'email',
     mobile: 'mobilephone',
