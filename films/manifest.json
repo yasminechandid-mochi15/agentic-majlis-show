@@ -1,0 +1,62 @@
+{
+  "agents-work": {
+    "desktop": {
+      "count": 40,
+      "w": 1280,
+      "h": 720
+    },
+    "mobile": {
+      "count": 40,
+      "w": 720,
+      "h": 720
+    }
+  },
+  "agents-majlis": {
+    "desktop": {
+      "count": 56,
+      "w": 1280,
+      "h": 720
+    },
+    "mobile": {
+      "count": 56,
+      "w": 720,
+      "h": 720
+    }
+  },
+  "hours": {
+    "desktop": {
+      "count": 56,
+      "w": 1280,
+      "h": 720
+    },
+    "mobile": {
+      "count": 56,
+      "w": 720,
+      "h": 720
+    }
+  },
+  "live-demo": {
+    "desktop": {
+      "count": 56,
+      "w": 1280,
+      "h": 720
+    },
+    "mobile": {
+      "count": 56,
+      "w": 720,
+      "h": 720
+    }
+  },
+  "seal": {
+    "desktop": {
+      "count": 56,
+      "w": 1280,
+      "h": 720
+    },
+    "mobile": {
+      "count": 56,
+      "w": 720,
+      "h": 720
+    }
+  }
+}
