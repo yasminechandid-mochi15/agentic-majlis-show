@@ -250,14 +250,28 @@ module.exports = async function handler(req, res) {
   }
 
   if (!hubspotRes.ok) {
-    // Log only HubSpot's error codes (e.g. FIELD_NOT_IN_FORM_DEFINITION), never
-    // the guest's details.
-    let codes = '';
+    // Log only HubSpot's error type (e.g. REQUIRED_FIELD) and the internal name
+    // of the field it concerns (e.g. "country"). HubSpot's full error message is
+    // never logged, because for some errors it can contain what the guest typed.
+    // Only plain names (letters, digits, underscores, dots) are extracted from it.
+    let details = 'no error details returned';
     try {
       const data = await hubspotRes.json();
-      codes = (data.errors || []).map((e) => e.errorType).join(', ');
-    } catch { /* ignore */ }
-    console.error(`[register] HubSpot rejected the submission: HTTP ${hubspotRes.status} ${codes}`);
+      const errors = Array.isArray(data && data.errors) ? data.errors : [];
+      const parts = errors.map((e) => {
+        const type = typeof e.errorType === 'string' && /^[A-Z0-9_]{1,64}$/.test(e.errorType)
+          ? e.errorType : 'UNKNOWN_ERROR_TYPE';
+        const msg = typeof e.message === 'string' ? e.message : '';
+        // HubSpot names the field like: Error in 'fields.country'. Required field 'country' is missing
+        const m = msg.match(/fields\.([A-Za-z0-9_.]{1,100})'/) || msg.match(/field '([A-Za-z0-9_.]{1,100})'/i);
+        return m ? `${type} (field: ${m[1]})` : type;
+      });
+      if (parts.length) details = parts.join('; ');
+      if (typeof data.correlationId === 'string' && /^[A-Za-z0-9-]{1,64}$/.test(data.correlationId)) {
+        details += ` | HubSpot correlationId: ${data.correlationId}`;
+      }
+    } catch { /* response was not JSON: keep the default text */ }
+    console.error(`[register] HubSpot rejected the submission: HTTP ${hubspotRes.status} | ${details}`);
     return reply(res, 502, { error: 'hubspot_rejected' });
   }
 
