@@ -1,7 +1,8 @@
 {
   "redirects": [
-    { "source": "/agentic-majlis", "destination": "/agentic-majlis/", "permanent": false }
-  ],
+  { "source": "/", "destination": "/agentic-majlis/", "permanent": false },
+  { "source": "/agentic-majlis", "destination": "/agentic-majlis/", "permanent": false }
+],
   "rewrites": [
     { "source": "/agentic-majlis/", "destination": "/index.html" },
     { "source": "/agentic-majlis/:path*", "destination": "/:path*" }
