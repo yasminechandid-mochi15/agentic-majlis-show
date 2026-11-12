@@ -8,3 +8,17 @@
 .confirm .btn.confirm__cal:before{background:var(--warm-orange)}
 @media(hover:hover)and (pointer:fine){.confirm .btn.confirm__cal:hover{box-shadow:none}}
 .confirm .btn.confirm__cal:focus-visible{box-shadow:0 0 0 2px var(--blackberry),0 0 0 4px var(--orange),0 0 0 6px var(--blackberry)}
+
+/* Speakers & agenda adjustments (November 2026)
+   1. "Your hosts": with the "More speakers" card removed, the two host cards are
+      centred and keep the same card width as the speaker grid below.
+   2. Agenda: bold session titles, speakers stacked one per line with their job
+      title in italics underneath, and small labels for panellists / moderator. */
+@media(min-width:700px){.speakers__row>.people--hosts{grid-column:1 / -1;grid-template-columns:repeat(2,calc((100% - 2 * var(--gap)) / 3));justify-content:center}}
+.stop__label>*{margin:0}
+.stop__title{font-weight:600;color:var(--cream);line-height:1.45}
+.stop__group{margin-top:14px;font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;line-height:1.4;color:var(--orange)}
+.stop__people{list-style:none;padding:0;margin-top:10px;display:grid;gap:12px}
+.stop__group+.stop__people{margin-top:8px}
+.stop__name{display:block;font-weight:400;line-height:1.4}
+.stop__role{display:block;margin-top:2px;font-family:var(--font-serif);font-style:italic;font-size:.95em;line-height:1.35;opacity:.75}
