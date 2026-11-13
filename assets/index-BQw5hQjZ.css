@@ -23,3 +23,7 @@
 .stop__group+.stop__people{margin-top:8px}
 .stop__name{display:block;font-weight:400;line-height:1.4}
 .stop__role{display:block;margin-top:2px;font-family:var(--font-serif);font-style:italic;font-size:.95em;line-height:1.35;opacity:.75}
+
+/* Host cards on mobile (November 2026): the italic host description uses a
+   smaller size on narrow screens so it stays proportionate within its column. */
+@media(max-width:699.98px){.people--hosts .person__role{font-size:.875rem;line-height:1.4;overflow-wrap:break-word}}
